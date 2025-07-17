@@ -69,12 +69,15 @@ export default function KnowledgeHubPage() {
   return (
     <SidebarProvider>
       <div className="relative min-h-screen bg-background font-body">
-        <Sidebar>
+        <Sidebar collapsible="icon">
           <SidebarNav sections={knowledgeHubData} />
         </Sidebar>
         <SidebarInset>
-           <header className="flex items-center justify-between border-b p-4">
-              <SidebarTrigger />
+           <header className="flex items-center justify-between border-b p-4 sticky top-0 bg-background/80 backdrop-blur-sm z-10">
+              <SidebarTrigger className="md:flex hidden" />
+              <div className="md:hidden">
+                 <SidebarTrigger />
+              </div>
               <ThemeToggle />
            </header>
           
