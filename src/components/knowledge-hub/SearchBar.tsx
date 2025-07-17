@@ -53,11 +53,20 @@ export function SearchBar({ onSearchChange, resultCount, hasSearchTerm }: Search
           .then(setSuggestions)
           .catch(err => {
             console.error('AI suggestion error:', err);
-            toast({
-              variant: 'destructive',
-              title: 'AI Suggestion Error',
-              description: 'Could not fetch intelligent suggestions.',
-            });
+            const errorMessage = (err.message || 'An unknown error occurred').toLowerCase();
+            if (errorMessage.includes('503') || errorMessage.includes('overloaded')) {
+               toast({
+                variant: 'destructive',
+                title: 'AI Service Unavailable',
+                description: 'The AI suggestion service is currently overloaded. Please try again in a moment.',
+              });
+            } else {
+              toast({
+                variant: 'destructive',
+                title: 'AI Suggestion Error',
+                description: 'Could not fetch intelligent suggestions.',
+              });
+            }
           });
       } else {
         setSuggestions(null);
