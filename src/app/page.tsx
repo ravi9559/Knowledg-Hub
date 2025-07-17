@@ -2,21 +2,17 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
+import { SidebarProvider, Sidebar, SidebarInset } from '@/components/ui/sidebar';
 import { SidebarNav } from '@/components/knowledge-hub/SidebarNav';
 import { KnowledgeHubHeader } from '@/components/knowledge-hub/Header';
 import { SearchBar } from '@/components/knowledge-hub/SearchBar';
 import { ResourceCard } from '@/components/knowledge-hub/ResourceCard';
 import { knowledgeHubData } from '@/data/knowledge-hub-data';
-import { ThemeToggle } from '@/components/ThemeToggle';
 import { BackToTop } from '@/components/BackToTop';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Button } from '@/components/ui/button';
-import { PanelLeft } from 'lucide-react';
 
 function PageContent() {
   const [searchTerm, setSearchTerm] = useState('');
-  const { toggleSidebar } = useSidebar();
 
   const filteredData = useMemo(() => {
     if (!searchTerm) {
@@ -39,16 +35,8 @@ function PageContent() {
 
   return (
     <>
-      <header className="flex items-center justify-between border-b p-4 sticky top-0 bg-background/80 backdrop-blur-sm z-10 h-16">
-          <Button variant="ghost" size="icon" onClick={toggleSidebar} className="md:hidden">
-            <PanelLeft />
-          </Button>
-          <div className="flex-1" />
-          <ThemeToggle />
-      </header>
-      
+      <KnowledgeHubHeader />
       <main className="p-4 sm:p-6 lg:p-8">
-        <KnowledgeHubHeader />
         <SearchBar onSearchChange={setSearchTerm} resultCount={totalResults} hasSearchTerm={!!searchTerm} />
         <div className="mt-12 space-y-12">
           {filteredData.length > 0 ? (
