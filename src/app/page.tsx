@@ -17,14 +17,27 @@ function PageContent() {
       return knowledgeHubData;
     }
     const lowercasedFilter = searchTerm.toLowerCase();
-    return knowledgeHubData.map(section => ({
-      ...section,
-      resources: section.resources.filter(
+    
+    return knowledgeHubData.reduce((acc, section) => {
+      const sectionTitleMatches = section.title.toLowerCase().includes(lowercasedFilter);
+      
+      if (sectionTitleMatches) {
+        acc.push(section); // Include the whole section if title matches
+        return acc;
+      }
+      
+      const filteredResources = section.resources.filter(
         resource =>
           resource.title.toLowerCase().includes(lowercasedFilter) ||
           resource.description.toLowerCase().includes(lowercasedFilter)
-      ),
-    })).filter(section => section.resources.length > 0);
+      );
+      
+      if (filteredResources.length > 0) {
+        acc.push({ ...section, resources: filteredResources }); // Include section with filtered resources
+      }
+      
+      return acc;
+    }, [] as typeof knowledgeHubData);
   }, [searchTerm]);
   
   const totalResults = useMemo(() => {
