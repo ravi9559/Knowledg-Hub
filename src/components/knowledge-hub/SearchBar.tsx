@@ -63,11 +63,11 @@ export function SearchBar({ onSearchChange, resultCount, hasSearchTerm }: Search
   return (
     <div className="max-w-2xl mx-auto">
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
         <Input
           type="text"
-          placeholder="Search knowledge hub..."
-          className="w-full pl-10 pr-10 py-6 text-base rounded-full shadow-sm"
+          placeholder="Search for articles, policies, maps, and more..."
+          className="w-full pl-12 pr-12 py-7 text-base rounded-full shadow-lg focus-visible:ring-primary focus-visible:ring-2 focus-visible:ring-offset-2"
           value={query}
           onChange={e => setQuery(e.target.value)}
         />
@@ -75,15 +75,15 @@ export function SearchBar({ onSearchChange, resultCount, hasSearchTerm }: Search
           <Button
             variant="ghost"
             size="icon"
-            className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full"
+            className="absolute right-3 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full"
             onClick={clearSearch}
           >
             <X className="h-5 w-5 text-muted-foreground" />
           </Button>
         )}
       </div>
-      <div className="h-10 mt-2 px-4 flex items-center justify-center text-sm">
-        {isPending && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+      <div className="h-10 mt-3 px-4 flex items-center justify-center text-sm min-h-[2.5rem]">
+        {isPending && <Loader2 className="h-4 w-4 animate-spin mr-2 text-muted-foreground" />}
         {hasSearchTerm && !isPending && (
           <div className="text-muted-foreground">
             Found {resultCount} item(s).
@@ -91,10 +91,10 @@ export function SearchBar({ onSearchChange, resultCount, hasSearchTerm }: Search
         )}
         {allSuggestions.length > 0 && (
           <div className="ml-4 flex items-center gap-2 overflow-x-auto">
-             <Sparkles className="h-4 w-4 text-amber-500 shrink-0" />
-             <span className="text-muted-foreground font-medium shrink-0">Suggestions:</span>
+             <Sparkles className="h-5 w-5 text-amber-500 shrink-0" />
+             <span className="text-muted-foreground font-medium shrink-0">Try:</span>
             {allSuggestions.map((s, i) => (
-              <Badge key={i} variant="secondary" className="cursor-pointer" onClick={() => setQuery(s)}>
+              <Badge key={i} variant="outline" className="cursor-pointer font-normal border-primary/50 text-primary hover:bg-primary/10" onClick={() => setQuery(s)}>
                 {s}
               </Badge>
             ))}

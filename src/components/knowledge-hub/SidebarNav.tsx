@@ -9,8 +9,10 @@ import {
   SidebarMenuButton,
   SidebarContent,
   useSidebar,
+  SidebarTrigger,
+  SidebarFooter,
 } from '@/components/ui/sidebar';
-import { BookOpen } from 'lucide-react';
+import { LibraryBig, PanelLeft } from 'lucide-react';
 
 interface SidebarNavProps {
   sections: Section[];
@@ -18,7 +20,7 @@ interface SidebarNavProps {
 
 export function SidebarNav({ sections }: SidebarNavProps) {
   const [activeSection, setActiveSection] = useState<string>('');
-  const { setOpenMobile, state: sidebarState } = useSidebar();
+  const { setOpenMobile, state: sidebarState, toggleSidebar } = useSidebar();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,10 +56,12 @@ export function SidebarNav({ sections }: SidebarNavProps) {
 
   return (
     <>
-      <SidebarHeader>
-        <div className="flex items-center gap-2 p-2">
-            <BookOpen className="w-6 h-6 text-primary" />
-            <span className="font-headline text-lg font-semibold group-data-[collapsible=icon]:hidden">O2O Knowledge Nav</span>
+      <SidebarHeader className="p-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+            <div className="bg-primary text-primary-foreground p-2 rounded-lg">
+                <LibraryBig className="w-6 h-6" />
+            </div>
+            <span className="font-headline text-lg font-semibold group-data-[collapsible=icon]:hidden">O2O Navigator</span>
         </div>
       </SidebarHeader>
       <SidebarContent>
@@ -77,6 +81,14 @@ export function SidebarNav({ sections }: SidebarNavProps) {
           ))}
         </SidebarMenu>
       </SidebarContent>
+      <SidebarFooter className='mt-auto p-2 border-t'>
+          <SidebarMenu>
+            <SidebarMenuButton onClick={toggleSidebar} className="hidden md:flex">
+                <PanelLeft />
+                <span>Collapse</span>
+            </SidebarMenuButton>
+          </SidebarMenu>
+      </SidebarFooter>
     </>
   );
 }
