@@ -2,8 +2,6 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { SidebarProvider, Sidebar, SidebarInset } from '@/components/ui/sidebar';
-import { SidebarNav } from '@/components/knowledge-hub/SidebarNav';
 import { KnowledgeHubHeader } from '@/components/knowledge-hub/Header';
 import { SearchBar } from '@/components/knowledge-hub/SearchBar';
 import { ResourceCard } from '@/components/knowledge-hub/ResourceCard';
@@ -74,7 +72,6 @@ function PageSkeleton() {
   return (
       <div className="p-4 sm:p-6 lg:p-8">
       <div className="flex items-center justify-between mb-8 h-16">
-        <Skeleton className="h-9 w-9 md:hidden" />
         <div className="flex-grow" />
         <Skeleton className="h-9 w-9" />
       </div>
@@ -105,16 +102,9 @@ export default function KnowledgeHubPage() {
   }, []);
 
   return (
-    <SidebarProvider>
-      <div className="relative min-h-screen bg-background font-body">
-        <Sidebar>
-          <SidebarNav sections={knowledgeHubData} />
-        </Sidebar>
-        <SidebarInset>
-          {!isMounted ? <PageSkeleton /> : <PageContent />}
-        </SidebarInset>
+    <div className="relative min-h-screen bg-background font-body">
+        {!isMounted ? <PageSkeleton /> : <PageContent />}
         <BackToTop />
-      </div>
-    </SidebarProvider>
+    </div>
   );
 }
