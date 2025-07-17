@@ -1,33 +1,16 @@
+
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
+import { SidebarProvider, Sidebar, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar';
 import { SidebarNav } from '@/components/knowledge-hub/SidebarNav';
 import { KnowledgeHubHeader } from '@/components/knowledge-hub/Header';
 import { SearchBar } from '@/components/knowledge-hub/SearchBar';
 import { ResourceCard } from '@/components/knowledge-hub/ResourceCard';
-import { knowledgeHubData, Section as SectionType } from '@/data/knowledge-hub-data';
+import { knowledgeHubData } from '@/data/knowledge-hub-data';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { BackToTop } from '@/components/BackToTop';
 import { Skeleton } from '@/components/ui/skeleton';
-import { cn } from '@/lib/utils';
-import { PanelLeft } from 'lucide-react';
-
-function HeaderContent() {
-  const { isMobile, toggleSidebar } = useSidebar();
-  return (
-    <header className="flex items-center p-4 sm:p-6 lg:p-8 border-b md:border-none">
-      <SidebarTrigger className={cn('md:mr-4', { 'hidden': !isMobile })} />
-      <button onClick={toggleSidebar} className="hidden md:flex items-center justify-center h-9 w-9 mr-4 rounded-md hover:bg-accent hover:text-accent-foreground" aria-label="Toggle sidebar">
-        <PanelLeft className="h-6 w-6" />
-      </button>
-      <div className="flex-grow" />
-      <div className="flex items-center gap-2 z-10">
-        <ThemeToggle />
-      </div>
-    </header>
-  );
-}
 
 export default function KnowledgeHubPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -86,11 +69,14 @@ export default function KnowledgeHubPage() {
   return (
     <SidebarProvider>
       <div className="relative min-h-screen bg-background font-body">
-        <Sidebar collapsible="icon">
+        <Sidebar>
           <SidebarNav sections={knowledgeHubData} />
         </Sidebar>
         <SidebarInset>
-          <HeaderContent />
+           <header className="flex items-center justify-between border-b p-4">
+              <SidebarTrigger />
+              <ThemeToggle />
+           </header>
           
           <main className="p-4 sm:p-6 lg:p-8">
             <KnowledgeHubHeader />
