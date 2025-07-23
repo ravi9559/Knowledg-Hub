@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "target": "knowledghub",
+    "target": "knowledg-hub",
     "public": ".next",
     "rewrites": [
       { "source": "**", "function": "nextApp" }
