@@ -5,8 +5,11 @@
   "targets": {
     "lineagelens-rz5il": {
       "hosting": {
-        "knowledghub": ["knowledg-hub"] 
+        "knowledg-hub": [
+          "knowledg-hub"
+        ]
       }
     }
-  }
+  },
+  "etags": {}
 }
