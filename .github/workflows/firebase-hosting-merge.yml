@@ -16,10 +16,13 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
       - run: npm ci && npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_LINEAGELENS_RZ5IL }}
-          channelId: live
-          projectId: lineagelens-rz5il
-          target: knowledg-hub
+
+      # Add a step to install Firebase CLI
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      # Add a step to deploy to Firebase (hosting and functions)
+      - name: Deploy to Firebase
+        run: firebase deploy --only hosting:knowledg-hub,functions --project lineagelens-rz5il
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_LINEAGELENS_RZ5IL }} # Use the service account for authentication
