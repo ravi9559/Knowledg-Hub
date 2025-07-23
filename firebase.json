@@ -1,12 +1,8 @@
 {
   "hosting": {
-    "site": "knowledg-hub",        
-    "public": "out",               
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "target": "knowledghub",     
+    "public": "out",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
