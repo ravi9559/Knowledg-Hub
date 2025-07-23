@@ -5,7 +5,7 @@
   "targets": {
     "lineagelens-rz5il": {
       "hosting": {
-        "knowledgHubTarget": [
+        "knowledghub": [
           "knowledg-hub"
         ]
       }
