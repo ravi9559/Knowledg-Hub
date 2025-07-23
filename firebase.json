@@ -1,13 +1,12 @@
 {
   "hosting": {
-    "target": "knowledghub",     
-    "public": "out",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "target": "knowledghub",
+    "public": ".next",
     "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
+      { "source": "**", "function": "nextApp" }
     ]
-  }
+  },
+  "functions": {
+    "source": ".output/functions"  
+}
 }
