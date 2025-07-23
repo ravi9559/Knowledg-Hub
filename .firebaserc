@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "lineagelens-rz5il"
-  }
+  },
+  "targets": {
+    "lineagelens-rz5il": {
+      "hosting": {
+        "knowledgHubTarget": [
+          "knowledg-hub"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
