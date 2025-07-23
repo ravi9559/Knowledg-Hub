@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "lineagelens-rz5il"
+  },
+  "targets": {
+    "lineagelens-rz5il": {
+      "hosting": {
+        "knowledghub": ["knowledg-hub"] 
+      }
+    }
+  }
+}

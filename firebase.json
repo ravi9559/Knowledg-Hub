@@ -1,0 +1,12 @@
+{
+  "hosting": {
+    "target": "knowledghub",
+    "public": ".next",
+    "rewrites": [
+      { "source": "**", "function": "nextApp" }
+    ]
+  },
+  "functions": {
+    "source": ".output/functions"  
+}
+}
