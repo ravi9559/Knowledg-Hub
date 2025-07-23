@@ -2,7 +2,7 @@
   "hosting": {
     "target": "knowledghub",
     "public": "public",
-    "site": "knowledg-hub", 
+     
     "ignore": [
       "firebase.json",
       "**/.*",
